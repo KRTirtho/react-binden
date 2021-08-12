@@ -7,6 +7,7 @@ export interface InputModel<T> {
     setError: Dispatch<SetStateAction<string>>;
     touched: boolean;
     setTouched: Dispatch<SetStateAction<boolean>>;
+    defaultValue: T;
 }
 
 export function useModel<T>(defaultValue: T) {
@@ -14,5 +15,5 @@ export function useModel<T>(defaultValue: T) {
     const [error, setError] = useState<string>('');
     const [touched, setTouched] = useState<boolean>(false);
 
-    return { value, setValue, error, setError, touched, setTouched };
+    return { defaultValue, value, setValue, error, setError, touched, setTouched };
 }

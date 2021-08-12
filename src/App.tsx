@@ -1,4 +1,5 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
+import Form from './components/Form';
 import Input from './components/Input';
 import { useModel } from './hooks/useModel';
 
@@ -16,9 +17,13 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(function Cust
 });
 
 function App() {
-    const model = useModel('');
+    const email = useModel('');
+    const password = useModel('');
 
-    console.log(model);
+    console.log({
+        email,
+        password,
+    });
 
     const emailReg =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -26,15 +31,17 @@ function App() {
 
     return (
         <div>
-            Form:
-            <Input
-                as={CustomInput}
-                map-props={(props)=>({error: true})}
-                model={model}
-                maxLength={[20, 'Only 20 okay?']}
-                minLength={[5, 'At least 5 please!!!!']}
-                pattern={[[emailReg, phoneReg], 'either phone or a email']}
-            />
+            <Form>
+                <Input
+                    as={CustomInput}
+                    map-props={() => ({ error: true })}
+                    model={email}
+                    maxLength={[20, 'Only 20 okay?']}
+                    minLength={[5, 'At least 5 please!!!!']}
+                    pattern={[[emailReg, phoneReg], 'either phone or a email']}
+                />
+                <Input model={password} type="password" minLength={8} maxLength={16} required />
+            </Form>
         </div>
     );
 }

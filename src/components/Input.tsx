@@ -8,8 +8,10 @@ import React, {
     useEffect,
     useMemo,
 } from 'react';
+import { flushSync } from 'react-dom';
 import { InputModel } from '../hooks/useModel';
 import PropTypes from 'prop-types';
+import { useFormContext } from './Form';
 
 type PatternTuple = [RegExp | RegExp[], string];
 
@@ -44,7 +46,7 @@ function formatPatternError(pattern: RegExp, msg?: string) {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     {
-        model: { value, setValue, error, setError, touched, setTouched },
+        model: { value, setValue, error, setError, touched, setTouched, defaultValue },
         as,
         required,
         'map-props': mapProps,
@@ -61,6 +63,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     },
     ref,
 ) {
+    const context = useFormContext();
+
     useEffect(() => {
         const validated = validate?.(value, touched);
 
@@ -106,8 +110,24 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         }
     }, [value, error, touched, required, min, max, maxLength, minLength, pattern]);
 
+    useEffect(() => {
+        context.setErrors(!!(error && !context.errors));
+    }, [error]);
+
+    useEffect(() => {
+        if (context.reset) {
+            flushSync(() => {
+                setValue(defaultValue);
+                setTouched(false);
+                setError('');
+            });
+        }
+    }, [context.reset]);
+
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         onChange?.(e);
+        // unlocking the form from `reset` status
+        if (context.reset && value === defaultValue) context.setReset(false);
         setValue(e.target[['checkbox', 'radio'].includes(type) ? 'checked' : 'value']);
     }
     function handleBlur(e: FocusEvent<HTMLInputElement>) {
@@ -134,7 +154,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
                   })
                 : props),
         }),
-        [error, props, as, required, max, min, maxLength, minLength, pattern, type],
+        [error, props, as, required, max, min, maxLength, minLength, pattern, type, name],
     );
 
     const Component = as ?? 'input';
