@@ -6,13 +6,15 @@ import React, {
     forwardRef,
     SetStateAction,
     useContext,
-    useState,
     useImperativeHandle,
     useRef,
     FormEvent,
+    useState,
+    FocusEvent,
 } from 'react';
+import { useForm } from '../hooks/useForm';
 
-interface FormShadowContext {
+export interface FormShadowContext {
     errors: boolean;
     setErrors: Dispatch<SetStateAction<boolean>>;
     reset: boolean;
@@ -37,31 +39,53 @@ const formContext = React.createContext<FormShadowContext>({
     },
 });
 
+/**
+ * used for retrieving the Form context
+ */
 export function useFormContext(): FormShadowContext {
     const context = useContext(formContext);
     return context;
 }
 const FormProvider = formContext.Provider;
 
-export interface FormBagMethods extends Pick<FormShadowContext, 'setSubmitting' | 'setErrors'> {
+export interface FormBagMethods
+    extends Pick<FormShadowContext, 'setSubmitting' | 'setErrors'> {
     resetForm(): void;
 }
 
-export type FormBagValues = Pick<FormShadowContext, 'submitting' | 'reset' | 'errors'>;
+export type FormBagValues = Pick<FormShadowContext, 'reset' | 'errors'>;
 
 export interface FormProps extends Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'> {
     as?: ComponentType<ComponentPropsWithRef<'form'>>;
-    onSubmit?: (e: FormEvent<HTMLFormElement>, v: FormBagValues, c: FormBagMethods) => void;
+    onSubmit?: (
+        e: FormEvent<HTMLFormElement>,
+        v: FormBagValues,
+        c: FormBagMethods,
+    ) => void;
+    states?: FormShadowContext;
 }
 
-const Form = forwardRef<HTMLFormElement, FormProps>(function Form({ as, onSubmit, children, ...props }, ref) {
+/**
+ * Groups `Input`s together & handles form submission & reset
+ */
+const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
+    { as, onSubmit, onBlur, states, children, ...props },
+    ref,
+) {
     const Component = as ?? 'form';
-    const [errors, setErrors] = useState<boolean>(false);
-    const [reset, setReset] = useState<boolean>(false);
-    const [submitting, setSubmitting] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement>(null);
+    const { errors, reset, submitting, setErrors, setReset, setSubmitting } =
+        states ?? useForm();
 
-    useImperativeHandle<HTMLFormElement | null, HTMLFormElement | null>(ref, () => formRef.current);
+    const [touched, setTouched] = useState<boolean>(false);
+
+    console.log({ touched });
+
+    // exposing ref for keeping usability of forwarded ref
+    useImperativeHandle<HTMLFormElement | null, HTMLFormElement | null>(
+        ref,
+        () => formRef.current,
+    );
 
     function resetForm() {
         formRef.current?.reset();
@@ -69,12 +93,28 @@ const Form = forwardRef<HTMLFormElement, FormProps>(function Form({ as, onSubmit
     }
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        onSubmit?.(e, { errors, submitting, reset }, { resetForm, setSubmitting, setErrors });
+        e.preventDefault();
+        if (!errors && !submitting && touched) {
+            setSubmitting(true);
+            onSubmit?.(e, { errors, reset }, { resetForm, setSubmitting, setErrors });
+        }
+    }
+
+    function handleBlur(e: FocusEvent<HTMLFormElement>) {
+        onBlur?.(e);
+        !touched && setTouched(true);
     }
 
     return (
-        <FormProvider value={{ errors, setErrors, reset, setReset, submitting, setSubmitting }}>
-            <Component {...props} onSubmit={handleSubmit} ref={formRef}>
+        <FormProvider
+            value={{ errors, setErrors, reset, setReset, submitting, setSubmitting }}
+        >
+            <Component
+                {...props}
+                onSubmit={handleSubmit}
+                onBlur={handleBlur}
+                ref={formRef}
+            >
                 {children}
             </Component>
         </FormProvider>

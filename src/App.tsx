@@ -1,46 +1,114 @@
-import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
-import Form from './components/Form';
-import Input from './components/Input';
+import React, {
+    ComponentPropsWithoutRef,
+    CSSProperties,
+    forwardRef,
+    useMemo,
+} from 'react';
+import Form, { FormProps } from './components/Form';
 import { useModel } from './hooks/useModel';
+import Input from './components/Input';
 
 interface CustomInputProps extends ComponentPropsWithoutRef<'input'> {
-    error?: boolean;
-    hint?: string;
+    error?: string | boolean;
     label?: string;
 }
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(function CustomInput(
-    { error, hint, label, ...props },
+    { error, label, ...props },
     ref,
 ) {
-    return <input {...props} ref={ref} />;
-});
+    const styles = useMemo<CSSProperties>(() => {
+        return {
+            padding: '10px',
+            border: error ? 'red solid 1px' : 'skyblue solid 1px',
+            borderRadius: '5px',
+        };
+    }, [error]);
 
+    const wrapperStyle: CSSProperties = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        justifyContent: 'center',
+    };
+
+    const hintStyle: CSSProperties = {
+        color: 'red',
+        fontSize: '0.8rem',
+    };
+
+    const id = (Date.now() * Math.random()).toString();
+
+    return (
+        <div style={wrapperStyle}>
+            <div>
+                <label htmlFor={props.id ?? id}>{label}</label>
+                <input id={id} {...props} style={styles} ref={ref} />
+            </div>
+            <span aria-roledescription="hint" style={hintStyle}>
+                {typeof error === 'boolean' ? 'An error occurred' : error}
+            </span>
+        </div>
+    );
+});
+let counter = 0;
 function App() {
     const email = useModel('');
     const password = useModel('');
+    const confirmPassword = useModel('');
 
-    console.log({
+    console.log(`INPUTS ${counter}`, {
         email,
         password,
+        confirmPassword,
     });
+    counter++;
 
     const emailReg =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const phoneReg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    // const phoneReg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+    const handleSubmit: FormProps['onSubmit'] = (e, values, handlers) => {
+        console.log('VALUES', values);
+        console.log('HANDLERS', handlers);
+        handlers.resetForm();
+    };
 
     return (
         <div>
-            <Form>
+            <Form
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+                onSubmit={handleSubmit}
+            >
                 <Input
                     as={CustomInput}
-                    map-props={() => ({ error: true })}
                     model={email}
-                    maxLength={[20, 'Only 20 okay?']}
-                    minLength={[5, 'At least 5 please!!!!']}
-                    pattern={[[emailReg, phoneReg], 'either phone or a email']}
+                    pattern={[emailReg, 'Type in a valid email']}
+                    placeholder="Email"
+                    required
                 />
-                <Input model={password} type="password" minLength={8} maxLength={16} required />
+                <Input
+                    as={CustomInput}
+                    model={password}
+                    type="password"
+                    minLength={8}
+                    maxLength={16}
+                    required
+                    placeholder="Password"
+                />
+                <Input
+                    as={CustomInput}
+                    type="password"
+                    imprint-model={password}
+                    model={confirmPassword}
+                    required
+                    placeholder="Confirm Password"
+                />
+                <button type="submit">Submit</button>
             </Form>
         </div>
     );

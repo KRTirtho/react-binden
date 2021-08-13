@@ -1,10 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
-import { InputModel } from './useModel';
+import { FieldModel } from './useModel';
 
 /**
  * @deprecated
  */
-export function useModels<T extends Record<string, any>>(initModels: T): Record<keyof T, InputModel<T[keyof T]>> {
+export function useModels<T extends Record<string, any>>(initModels: T): Record<keyof T, FieldModel<T[keyof T]>> {
     const modelKeys = useMemo(() => Object.keys(initModels), [initModels]);
 
     const modelWithValue = useCallback(
@@ -18,7 +18,7 @@ export function useModels<T extends Record<string, any>>(initModels: T): Record<
     const [errors, setErrors] = useState<Record<keyof T, string>>(() => modelWithValue(''));
     const [toucheds, setToucheds] = useState<Record<keyof T, boolean>>(() => modelWithValue(false));
 
-    const toModels: Record<keyof T, InputModel<T[keyof T]>> = useMemo(
+    const toModels: Record<keyof T, FieldModel<T[keyof T]>> = useMemo(
         () =>
             modelKeys.reduce((acc, key: keyof T) => {
                 return {
@@ -57,7 +57,7 @@ export function useModels<T extends Record<string, any>>(initModels: T): Record<
                 };
             }, {}),
         [modelKeys, values, errors, toucheds],
-    ) as Record<keyof T, InputModel<T[keyof T]>>;
+    ) as Record<keyof T, FieldModel<T[keyof T]>>;
 
     return toModels;
 }

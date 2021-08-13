@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-export interface InputModel<T> {
+export interface FieldModel<T> {
     value: T;
     setValue: Dispatch<SetStateAction<T>>;
     error: string;
