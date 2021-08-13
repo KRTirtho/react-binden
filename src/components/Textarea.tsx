@@ -1,7 +1,8 @@
 import React, { ComponentPropsWithRef, ComponentType, forwardRef } from 'react';
 import Field, { FieldOptions } from './Field';
 
-interface TextareaProps extends Omit<FieldOptions, 'as'> {
+interface TextareaProps extends Omit<FieldOptions, 'as'|'pattern'> {
+    
     as?: ComponentType<ComponentPropsWithRef<'textarea'>>;
 }
 
