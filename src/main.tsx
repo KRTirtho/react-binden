@@ -1,10 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+export * from './components/Form';
+export * from './components/Field';
+export * from './components/Input';
+export * from './components/Textarea';
+export * from './hooks/useForm';
+export * from './hooks/useModel';

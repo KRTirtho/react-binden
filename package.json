@@ -1,6 +1,7 @@
 {
   "name": "react-bind",
   "version": "0.0.0",
+  "main": "dist/main",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

@@ -320,6 +320,7 @@ Field.propTypes = {
     pattern: PropTypes.oneOfType([PropTypes.instanceOf(RegExp), PropTypes.array]) as any,
     'imprint-model': modelShape as any,
     validate: PropTypes.func,
+    'semantic-validation': PropTypes.bool,
 };
 
 export default Field;

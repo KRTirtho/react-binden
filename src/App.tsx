@@ -7,6 +7,7 @@ import React, {
 import Form, { FormProps } from './components/Form';
 import { useModel } from './hooks/useModel';
 import Input from './components/Input';
+import ReactDOM from 'react-dom';
 
 interface CustomInputProps extends ComponentPropsWithoutRef<'input'> {
     error?: string | boolean;
@@ -115,3 +116,5 @@ function App() {
 }
 
 export default App;
+
+ReactDOM.render(<App />, document.getElementById('root'));
