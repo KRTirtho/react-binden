@@ -9,30 +9,65 @@ import React, {
   useMemo,
 } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
-import { FieldModel } from '../hooks/useModel';
+import { FieldModel, ModelOptions } from '../hooks/useModel';
 import PropTypes from 'prop-types';
 import { useFormContext } from './Form';
 
 type PatternTuple = [RegExp | RegExp[], string];
 
-export interface FieldOptions {
-  model: FieldModel<any>;
-  'imprint-model'?: FieldModel<any> | [FieldModel<any>, string];
+export interface FieldOptions<T = any> {
+  model: FieldModel<T>;
+  'imprint-model'?: FieldModel<T> | [FieldModel<T>, string];
   as?: ElementType;
+  // validation related props
+
+  /**
+   * Makes the input required
+   * set to `true` or pass an error message
+   */
   required?: boolean | string;
+  /**
+   * Maximum number value (Only works with numeric input types)
+   * Pass a number or as an array [number, error-message]
+   */
   max?: number | [number, string];
+  /**
+   * Minimum number value (Only works with numeric input types)
+   * Pass a number or as an array [number, error-message]
+   */
   min?: number | [number, string];
+  /**
+   * Maximum character length (Only works with string input types)
+   * Pass a number or as an array [number, error-message]
+   */
   maxLength?: number | [number, string];
+  /**
+   * Minimum character length (Only works with string input types)
+   * Pass a number or as an array [number, error-message]
+   */
   minLength?: number | [number, string];
+  /**
+   * Validation regular expression that will be matched a against the 
+   * value of input 
+   * Pass a `RegExp` or an array of [`RegExp`, `error-message`] or
+   * an array of [`RegExp[]`, `error-message`]
+   */
   pattern?: RegExp | PatternTuple;
   'map-props'?: (
     props: Omit<FieldProps, 'map-props' | 'model' | 'as'>,
   ) => Record<any, any>;
+  /**
+   * Method for Manually validating the input, incase of doing anything 
+   * extremely different with the input field
+   * Should return a boolean (true|false)
+   * 
+   * `validate` provides the value of the input field & touched state
+   */
   validate?: <T = any>(value: T, touched: boolean) => boolean | [boolean, string];
   'semantic-validation'?: boolean;
 }
 
-type SemanticValidationProps =
+export type SemanticValidationProps =
   | 'required'
   | 'max'
   | 'min'
@@ -69,26 +104,51 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
         touched,
         setTouched,
         defaultValue,
+        validations
       },
       'imprint-model': imprintModel,
       as,
-      required,
-      'map-props': mapProps,
-      max,
-      min,
-      maxLength,
-      minLength,
-      onChange,
       onBlur,
-      pattern,
+      onChange,
+      'map-props': mapProps,
       type = 'text',
       disabled,
-      validate,
-      'semantic-validation': semanticValidation = true,
       ...props
     },
     ref,
   ) {
+
+    // merging props with hook options
+    // props are first priority here than comes model options
+    const {
+      required,
+      max,
+      min,
+      maxLength,
+      minLength,
+      pattern,
+      validate,
+      'semantic-validation': semanticValidation = true,
+    }: ModelOptions = useMemo(() => ({
+      required: props.required ?? validations?.required,
+      max: props.max ?? validations?.max,
+      min: props.min ?? validations?.min,
+      maxLength: props.maxLength ?? validations?.maxLength,
+      minLength: props.minLength ?? validations?.minLength,
+      pattern: props.pattern ?? validations?.pattern,
+      validate: props.validate ?? validations?.validate,
+      'semantic-validation': props['semantic-validation'] ?? validations?.['semantic-validation'],
+    }), [
+      props.required, validations?.required,
+      props.max, validations?.max,
+      props.min, validations?.min,
+      props.maxLength, validations?.maxLength,
+      props.minLength, validations?.minLength,
+      props.pattern, validations?.pattern,
+      props.validate, validations?.validate,
+      props['semantic-validation'], validations?.['semantic-validation'],
+    ])
+
     // global form context for keeping track of errors/touched-fields/submission-status
     const context = useFormContext();
 
@@ -286,7 +346,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
     );
 
     const Component = as ?? 'input';
-    
+
     return (
       <Component
         {...mapped}

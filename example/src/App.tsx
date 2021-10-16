@@ -52,8 +52,13 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(function Cust
 });
 let counter = 0;
 
+const emailReg =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 function App() {
-  const email = useModel('');
+  const email = useModel('', {
+    pattern: [emailReg, 'Type in a valid email'],
+    required: true,
+  });
   const password = useModel('');
   const confirmPassword = useModel('');
 
@@ -64,8 +69,6 @@ function App() {
   });
   counter++;
 
-  const emailReg =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // const phoneReg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
   const handleSubmit: FormProps['onSubmit'] = (e, values, handlers) => {
@@ -87,9 +90,7 @@ function App() {
         <Input
           as={CustomInput}
           model={email}
-          pattern={[emailReg, 'Type in a valid email']}
           placeholder="Email"
-          required
         />
         <Input
           as={CustomInput}

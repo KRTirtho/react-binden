@@ -74,8 +74,9 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
 ) {
   const Component = as ?? 'form';
   const formRef = useRef<HTMLFormElement>(null);
+  const fallback = useForm();
   const { errors, reset, submitting, setErrors, setReset, setSubmitting } =
-    states ?? useForm();
+    states ?? fallback
 
   const [touched, setTouched] = useState<boolean>(false);
 
