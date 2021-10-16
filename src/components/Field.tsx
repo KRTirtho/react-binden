@@ -283,9 +283,18 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       onChange?.(e);
       // unlocking the form from `reset` status
       if (context.reset && value === defaultValue) context.setReset(false);
+
+      // When working with Group of Checkboxes
+      if (type === "checkbox" && Array.isArray(defaultValue)) {
+        if (props.value === undefined) throw new TypeError("[react-bind]: props.value can't be empty when using checkbox group")
+        setValue(e.target.checked ? [...value, props.value] : value.filter((v: unknown) => v !== props.value))
+        return;
+      }
+
       setValue(
-        e.target[['checkbox', 'radio'].includes(type) ? 'checked' : 'value'],
+        e.target[type === "checkbox" ? 'checked' : 'value'],
       );
+
     }
     function handleBlur(e: FocusEvent<HTMLInputElement>) {
       onBlur?.(e);
