@@ -1,15 +1,14 @@
 import React, { ComponentPropsWithRef, ComponentType, forwardRef } from 'react';
-import Field, { FieldOptions } from './Field';
+import { Field, FieldOptions } from './Field';
 
-interface TextareaProps extends Omit<FieldOptions, 'as'|'pattern'> {
-    
-    as?: ComponentType<ComponentPropsWithRef<'textarea'>>;
+interface TextareaProps extends Omit<FieldOptions, 'as' | 'pattern'> {
+
+  as?: ComponentType<ComponentPropsWithRef<'textarea'>>;
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
-    props,
-    ref,
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
+  props,
+  ref,
 ) {
-    return <Field as="textarea" {...props} ref={ref} />;
+  return <Field as="textarea" {...props} ref={ref} />;
 });
-export default Textarea;
