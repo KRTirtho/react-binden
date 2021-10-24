@@ -80,8 +80,6 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
 
   const [touched, setTouched] = useState<boolean>(false);
 
-  console.log({ touched });
-
   // exposing ref for keeping usability of forwarded ref
   useImperativeHandle<HTMLFormElement | null, HTMLFormElement | null>(
     ref,

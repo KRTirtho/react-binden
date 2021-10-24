@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Input, InputProps } from '../components/Input';
 import { useModel } from '../hooks/useModel';
+import { Form } from '../main';
 
 export default {
   title: 'Examples/Checkbox',
@@ -14,7 +15,7 @@ const Template = () => {
 
 
   return (
-    <div>
+    <Form>
       <label>
         <Input type="checkbox" model={model} value="Lady" />
         Lady
@@ -58,7 +59,9 @@ const Template = () => {
       <p>value: {model2.value.toString()}</p>
       <p>error: {model2.error.toString()}</p>
       <p>touched: {String(model2.touched)}</p>
-    </div>
+
+      <button type="submit">Submit</button>
+    </Form>
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Input, InputProps } from '../components/Input';
 import { useModel } from '../hooks/useModel';
+import { Form } from '../main';
 
 export default {
   title: 'Examples/RadioGroup',
@@ -14,7 +15,7 @@ const Template = () => {
   const model2 = useModel("Agree", { name: "prompt" })
 
   return (
-    <div>
+    <Form>
       <label>
         <Input type="radio" model={model} value="Why?" />
         Why?
@@ -43,7 +44,9 @@ const Template = () => {
       <p>error: {String(model2.error)}</p>
       <p>touched: {String(model2.touched)}</p>
 
-    </div>
+      <button type="submit">Submit</button>
+
+    </Form>
   );
 };
 

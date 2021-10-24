@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Input, InputProps } from '../components/Input';
 import { useModel } from '../hooks/useModel';
+import { Form } from '../main';
 
 export default {
   title: 'Components/Input',
@@ -13,7 +14,7 @@ const Template = (props: InputProps) => {
   const model2 = useModel("What a field!")
 
   return (
-    <div>
+    <Form>
       <Input {...props} model={model} />
       <p>defaultValue: {model.defaultValue}</p>
       <p>value: {model.value}</p>
@@ -27,7 +28,8 @@ const Template = (props: InputProps) => {
       <p>value: {model2.value}</p>
       <p>error: {model2.error}</p>
       <p>touched: {String(model2.touched)}</p>
-    </div>
+      <button type="submit">Submit</button>
+    </Form>
   );
 };
 

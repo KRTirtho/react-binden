@@ -255,6 +255,8 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       minLength,
       pattern,
       imprintModel,
+      // will make it re validate before user submits
+      context.submitting
     ]);
 
     useEffect(() => {
@@ -314,7 +316,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       () =>
         semanticValidation
           ? {
-            required: typeof required === 'boolean' ? required : !!required,
+            required: !!required,
             min: Array.isArray(min) ? min[0].toString() : min?.toString(),
             max: Array.isArray(max) ? max[0].toString() : max?.toString(),
             minLength: Array.isArray(minLength)
@@ -375,7 +377,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
   },
 );
 
-const modelShape = PropTypes.shape({
+export const modelShape = PropTypes.shape({
   error: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,
   touched: PropTypes.bool.isRequired,
