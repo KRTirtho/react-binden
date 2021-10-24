@@ -129,6 +129,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       pattern,
       validate,
       'semantic-validation': semanticValidation = true,
+      name
     }: ModelOptions = useMemo(() => ({
       required: props.required ?? validations?.required,
       max: props.max ?? validations?.max,
@@ -138,6 +139,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       pattern: props.pattern ?? validations?.pattern,
       validate: props.validate ?? validations?.validate,
       'semantic-validation': props['semantic-validation'] ?? validations?.['semantic-validation'],
+      name: props.name ?? validations?.name
     }), [
       props.required, validations?.required,
       props.max, validations?.max,
@@ -147,6 +149,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       props.pattern, validations?.pattern,
       props.validate, validations?.validate,
       props['semantic-validation'], validations?.['semantic-validation'],
+      props.name, validations?.name
     ])
 
     // global form context for keeping track of errors/touched-fields/submission-status
@@ -286,7 +289,8 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
 
       // When working with Group of Checkboxes
       if (type === "checkbox" && Array.isArray(defaultValue)) {
-        if (props.value === undefined) throw new TypeError("[react-bind]: props.value can't be empty when using checkbox group")
+        if (props.value === undefined) throw new TypeError("[react-bind]: `props.value` can't be empty when using checkbox group")
+
         setValue(e.target.checked ? [...value, props.value] : value.filter((v: unknown) => v !== props.value))
         return;
       }
@@ -363,6 +367,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
         onBlur={handleBlur}
         type={type}
         ref={ref}
+        name={name}
       />
     );
   },

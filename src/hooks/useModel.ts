@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { FieldOptions, SemanticValidationProps } from '../main';
 
-export type ModelOptions = Pick<FieldOptions, SemanticValidationProps | "validate" | "semantic-validation">;
+export type ModelOptions = Pick<FieldOptions, SemanticValidationProps | "validate" | "semantic-validation"> & { name?: string; };
 
 export interface FieldModel<T> {
   value: T;
@@ -11,7 +11,7 @@ export interface FieldModel<T> {
   touched: boolean;
   setTouched: Dispatch<SetStateAction<boolean>>;
   defaultValue: T;
-  validations?: ModelOptions
+  validations?: ModelOptions;
 }
 
 /**
@@ -20,7 +20,7 @@ export interface FieldModel<T> {
  * Accepts a default value (optional)
  * 
  * And options {'required', 'max', 'min', 'maxLength', 'minLength', 
- * 'pattern', 'validate', 'semantic-validation'} (optional)
+ * 'pattern', 'validate', 'semantic-validation', 'name'} (optional)
  * 
  * **The Input & TextArea components also has props similar to the 
  * hook-options & will override the hook's option as Component props 
