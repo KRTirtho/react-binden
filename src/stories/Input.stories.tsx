@@ -10,6 +10,7 @@ export default {
 
 const Template = (props: InputProps) => {
   const model = useModel('');
+  const model2 = useModel("What a field!")
 
   return (
     <div>
@@ -18,6 +19,14 @@ const Template = (props: InputProps) => {
       <p>value: {model.value}</p>
       <p>error: {model.error}</p>
       <p>touched: {String(model.touched)}</p>
+
+      <h3>Default Value</h3>
+
+      <Input {...props} model={model2} />
+      <p>defaultValue: {model2.defaultValue}</p>
+      <p>value: {model2.value}</p>
+      <p>error: {model2.error}</p>
+      <p>touched: {String(model2.touched)}</p>
     </div>
   );
 };
@@ -29,5 +38,4 @@ export const WithDefault = Template.bind({});
   type: 'text',
   maxLength: 50,
   minLength: 10,
-  'semantic-validation': true,
 } as InputProps;

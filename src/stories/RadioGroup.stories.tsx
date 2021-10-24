@@ -9,16 +9,40 @@ export default {
 } as Meta<InputProps>;
 
 const Template = () => {
-  const model = useModel('', { name: "Hola" });
+  const model = useModel("", { name: "Hola" });
+
+  const model2 = useModel("Agree", { name: "prompt" })
 
   return (
     <div>
-      <Input type="radio" model={model} value="Why?" />
-      <Input type="radio" model={model} value="How?" />
+      <label>
+        <Input type="radio" model={model} value="Why?" />
+        Why?
+      </label>
+      <label >
+        <Input type="radio" model={model} value="How?" />
+        How?
+      </label>
       <p>defaultValue: {String(model.defaultValue)}</p>
       <p>value: {model.value.toString()}</p>
       <p>error: {String(model.error)}</p>
       <p>touched: {String(model.touched)}</p>
+
+      <h3>With Default Value</h3>
+
+      <label>
+        <Input type="radio" model={model2} value="Agree" />
+        Agree
+      </label>
+      <label>
+        <Input type="radio" model={model2} value="Disagree" />
+        Disagree
+      </label>
+      <p>defaultValue: {String(model2.defaultValue)}</p>
+      <p>value: {model2.value.toString()}</p>
+      <p>error: {String(model2.error)}</p>
+      <p>touched: {String(model2.touched)}</p>
+
     </div>
   );
 };

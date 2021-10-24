@@ -363,6 +363,8 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
     return (
       <Component
         {...mapped}
+        defaultChecked={Array.isArray(defaultValue) ? defaultValue.includes(props.value) : props.value === defaultValue}
+        defaultValue={!["radio", "checkbox"].includes(type) ? defaultValue : undefined}
         onChange={handleChange}
         onBlur={handleBlur}
         type={type}
