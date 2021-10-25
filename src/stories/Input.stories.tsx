@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { Input, InputProps } from '../components/Input';
 import { useModel } from '../hooks/useModel';
 import { Form } from '../main';
+import { useValidatorChain } from '../hooks/useValidatorChain';
 
 export default {
   title: 'Components/Input',

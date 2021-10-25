@@ -20,7 +20,8 @@
     "isolatedModules": true,
     "jsx": "react",
     "outDir": "dist",
-    "incremental": true
+    "incremental": true,
+    "stripInternal": true
   },
   "include": [
     "./src",

@@ -63,7 +63,7 @@ export interface FieldOptions<T = any> {
    * 
    * `validate` provides the value of the input field & touched state
    */
-  validate?: <T = any>(value: T, touched: boolean) => boolean | [boolean, string];
+  validate?: (value: T, touched: boolean) => boolean | [boolean, string];
   'semantic-validation'?: boolean;
 }
 
@@ -377,6 +377,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
   },
 );
 
+/** @internal */
 export const modelShape = PropTypes.shape({
   error: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,

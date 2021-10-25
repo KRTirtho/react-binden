@@ -5,3 +5,4 @@ export * from './components/Select';
 export * from './components/Textarea';
 export * from './hooks/useForm';
 export * from './hooks/useModel';
+export * from './hooks/useValidatorChain';
