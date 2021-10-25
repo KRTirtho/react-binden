@@ -280,7 +280,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
         (max || min || maxLength || minLength || pattern || validate)
       )
         throw new TypeError(
-          "[react-bind]: Both imprinting & validation can't be done at once. Following props `max`, `min`, `maxLength`, `minLength`, `pattern`, `validate` can't be used together with `imprint-model`",
+          "[react-binden]: Both imprinting & validation can't be done at once. Following props `max`, `min`, `maxLength`, `minLength`, `pattern`, `validate` can't be used together with `imprint-model`",
         );
     }, [imprintModel]);
 
@@ -291,7 +291,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
 
       // When working with Group of Checkboxes
       if (type === "checkbox" && Array.isArray(defaultValue)) {
-        if (props.value === undefined) throw new TypeError("[react-bind]: `props.value` can't be empty when using checkbox group")
+        if (props.value === undefined) throw new TypeError("[react-binden]: `props.value` can't be empty when using checkbox group")
 
         setValue(e.target.checked ? [...value, props.value] : value.filter((v: unknown) => v !== props.value))
         return;

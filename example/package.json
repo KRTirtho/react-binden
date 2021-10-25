@@ -1,5 +1,5 @@
 {
-    "name": "react-bind-example",
+    "name": "react-binden-example",
     "version": "0.0.1",
     "main": "dist/main",
     "scripts": {
@@ -11,7 +11,7 @@
     "dependencies": {
         "prop-types": "^15.7.2",
         "react": "^17.0.0",
-        "react-bind": "file:..",
+        "react-binden": "file:..",
         "react-dom": "^17.0.0"
     },
     "devDependencies": {

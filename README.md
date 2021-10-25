@@ -1,4 +1,4 @@
-<h1><p align="center">react-bind</p></h1>
+<h1><p align="center">react-binden</p></h1>
 
 A React form handling library with semantic validation
 
@@ -9,16 +9,16 @@ Its a minimal & lightweight form library that provides simple components, hooks 
 npm/yarn installation:
 
 ```bash
-$ npm i --save react-bind
+$ npm i --save react-binden
 ```
 
 ```bash
-$ yarn add react-bind
+$ yarn add react-binden
 ```
 
 ## Introduction
 
-react-bind uses both components & hooks based approach to make the form handling as easy as possible. It doesn't require any schema validation library like zod, ypu, joi, etc. react-bind uses built-in semantic HTML validation (which can be turned off) & provides a way to provide custom error messages. Validation is handled completely manually instead of 3rd party library, reducing the build size. By default it provides:
+react-binden uses both components & hooks based approach to make the form handling as easy as possible. It doesn't require any schema validation library like zod, ypu, joi, etc. react-binden uses built-in semantic HTML validation (which can be turned off) & provides a way to provide custom error messages. Validation is handled completely manually instead of 3rd party library, reducing the build size. By default it provides:
 
 -   min/max for number based inputs
 -   minLength/maxLength for text based inputs
@@ -26,7 +26,7 @@ react-bind uses both components & hooks based approach to make the form handling
 -   required/optional field
 -   model imprinting
 
-react-bind uses custom component with it's own hooks. It makes it look more like vue-js's form-handling approach & actually this is what this library is inspired from. Also provides way to **lift-up-state** with `useForm` hook incase the state of Form is required.
+react-binden uses custom component with it's own hooks. It makes it look more like vue-js's form-handling approach & actually this is what this library is inspired from. Also provides way to **lift-up-state** with `useForm` hook incase the state of Form is required.
 
 Provided Components:
 
@@ -40,7 +40,7 @@ Provided Hooks:
 -   useModel
 -   useForm
 
-react-bind can be integrated with other 3rd-party UI-component-framework. The `as` prop of both `Input` & `Textarea` allows to pass custom component constructors. Also provides way to map props to that custom component with the `map-props` prop
+react-binden can be integrated with other 3rd-party UI-component-framework. The `as` prop of both `Input` & `Textarea` allows to pass custom component constructors. Also provides way to map props to that custom component with the `map-props` prop
 
 ## Hooks & Components
 
@@ -157,7 +157,7 @@ Basic Signup Form handling example:
 
 ```jsx
 import React from 'react';
-import { Input, useModel, Form, FormProps, regexp } from 'react-bind';
+import { Input, useModel, Form, FormProps, regexp } from 'react-binden';
 
 const url = 'http://your-site.com/signup';
 
@@ -225,8 +225,8 @@ export default Signup;
 To run it locally, git clone the repo
 
 ```bash
-$ git clone https://github.com/KRTirtho/react-bind.git
-$ cd react-bind
+$ git clone https://github.com/KRTirtho/react-binden.git
+$ cd react-binden
 ```
 
 Then run:

@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   useMemo,
 } from 'react';
-import { Form, FormProps, useModel, Input } from "react-bind"
+import { Form, FormProps, useModel, Input } from "react-binden"
 import ReactDOM from 'react-dom';
 
 interface CustomInputProps extends ComponentPropsWithoutRef<'input'> {

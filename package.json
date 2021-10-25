@@ -1,5 +1,5 @@
 {
-    "name": "react-bind",
+    "name": "react-binden",
     "version": "0.0.1",
     "main": "dist/main",
     "author": {
@@ -8,20 +8,22 @@
     },
     "bugs": {
         "email": "krtirtho@gmail.com",
-        "url": "https://github.com/KRTirtho/react-bind/issues"
+        "url": "https://github.com/KRTirtho/react-binden/issues"
     },
-    "description": "Vue's bind-model inspired simple yet highly customizable form handling library for React",
-    "homepage": "https://github.com/KRTirtho/react-bind",
+    "description": "Vue's bind-model inspired simple yet highly customizable form handling & validating library for React",
+    "homepage": "https://github.com/KRTirtho/react-binden",
     "keywords": [
         "react",
-        "form-handling",
+        "form",
+        "handling",
+        "validation",
         "library",
         "typescript"
     ],
     "license": "MIT",
     "repository": {
         "type": "Git",
-        "url": "https://github.com/KRTirtho/react-bind"
+        "url": "https://github.com/KRTirtho/react-binden"
     },
     "scripts": {
         "build": "tsc --build",
