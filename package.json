@@ -2,6 +2,27 @@
     "name": "react-bind",
     "version": "0.0.1",
     "main": "dist/main",
+    "author": {
+        "name": "KRTirtho",
+        "email": "krtirtho@gmail.com"
+    },
+    "bugs": {
+        "email": "krtirtho@gmail.com",
+        "url": "https://github.com/KRTirtho/react-bind/issues"
+    },
+    "description": "Vue's bind-model inspired simple yet highly customizable form handling library for React",
+    "homepage": "https://github.com/KRTirtho/react-bind",
+    "keywords": [
+        "react",
+        "form-handling",
+        "library",
+        "typescript"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "Git",
+        "url": "https://github.com/KRTirtho/react-bind"
+    },
     "scripts": {
         "build": "tsc --build",
         "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
@@ -14,6 +35,9 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
     },
+    "files": [
+        "./dist"
+    ],
     "devDependencies": {
         "@babel/core": "^7.15.0",
         "@storybook/addon-essentials": "^6.3.12",

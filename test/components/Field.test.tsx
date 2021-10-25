@@ -1,4 +1,4 @@
-import { Field } from '../Field';
+import { Field } from '../../src/components/Field';
 
 test('renders', () => {
   //   render(<App />);

@@ -24,9 +24,7 @@
     "stripInternal": true
   },
   "include": [
-    "./src",
+    "./src"
   ],
-  "exclude": [
-    "./src/**/*.{spec,test}.{js,jsx,ts,tsx}",
-  ]
+  "exclude": []
 }
