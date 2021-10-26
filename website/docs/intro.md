@@ -1,35 +1,21 @@
 ---
+id: intro
+title: Introduction
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+React Binden (Binden is a German word meaning Bind in English) is just a simple form handling like other one's. But it simplifies the form-handling in react more than ever. Instead of being based on only hooks/HOC or only custom components, react-binden uses both hooks & custom components to provide the best possible developer experience without compromising the performance & safety. Btw, it's **the most lightweight** one weighing only around 127KB (npmjs.com) which even has it's **own validation system** integrated
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Integrating an form-library with a third-party UI component library was never as easy as now. _React Binden doesn't even require a 3rd-party library to integrate itself with other UI Frameworks/Libraries_. You can do it pretty easily in here
 
-## Getting Started
+## Features of React Binden:
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**:
-
-```shell
-npm init docusaurus@latest my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+-   Inspired from Vue's `v-bind` directive aka bind-variable API
+-   Easy, simple & Complete control over React form, input, validation & submission
+-   Super lightweight (only 127KB)🪶, fast⚡ & uses ESNext module system (tree-shakable)🌲
+-   Offers validation out of the box. Doesn't even require one to install 3rd validation library
+-   Provides own hooks & components to build the form
+-   zero dependency👀
+-   Field imprinting (a way to follow another field's value completely like ducklings follows duck🦆)
+-   UI component library/framework proof😉
+-   Easy to understand codebase if you want contribute to it

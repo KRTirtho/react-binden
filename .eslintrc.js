@@ -1,32 +1,30 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        node: true
+    env: {
+        browser: true,
+        es2021: true,
+        node: true,
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
         },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        ecmaVersion: 12,
+        sourceType: 'module',
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
+    plugins: ['react', '@typescript-eslint'],
     settings: {
         react: {
-            version: "detect"
-          }
+            version: 'detect',
+        },
     },
-    "rules": {
-        "react/prop-types": ["off"],
-    }
+    rules: {
+        'react/prop-types': ['off'],
+        '@typescript-eslint/no-var-requires': ['warn'],
+    },
 };
