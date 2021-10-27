@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ![React Binden Logo](/website/static/img/react-binden-banner.svg)
 
 A React form handling library with semantic validation
