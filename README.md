@@ -1,4 +1,4 @@
-![React Binden Logo](/website/static/img/react-binden-banner.svg)
+<img width="100%" height="auto" src="/website/static/img/react-binden-banner.svg" alt="React Binden Logo"/>
 
 A React form handling library with semantic validation
 
