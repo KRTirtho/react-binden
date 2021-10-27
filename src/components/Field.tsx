@@ -218,7 +218,7 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       // pattern matching
       else if (isValStr && pattern instanceof RegExp && !pattern.test(value))
         setError(formatPatternError(pattern));
-      // only one regexp with custom message
+      // only one regex with custom message
       else if (
         isValStr &&
         Array.isArray(pattern) &&

@@ -23,7 +23,7 @@ Here's a basic example of a Login form using React Binden:
 
 ```jsx title="/src/components/login.jsx"
 import React, {forwardRef, useMemo} from 'react';
-import { Form, useModel, Input, regexp } from "react-binden"
+import { Form, useModel, Input, regex } from "react-binden"
 
 function Login() {
     // a simple component just for provide basic style to the inputs
@@ -65,7 +65,7 @@ function Login() {
     });
 
     const email = useModel('', {
-        pattern: [regexp.email, 'Type in a valid email'],
+        pattern: [regex.email, 'Type in a valid email'],
         required: true,
     });
     const password = useModel('');

@@ -40,12 +40,12 @@ function Login() {
     );
   });
 
-  const regexp = {
+  const regex = {
     email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   }
 
   const email = useModel('', {
-    pattern: [regexp.email, 'Type in a valid email'],
+    pattern: [regex.email, 'Type in a valid email'],
     required: true,
   });
   const password = useModel('');

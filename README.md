@@ -157,7 +157,7 @@ Basic Signup Form handling example:
 
 ```jsx
 import React from 'react';
-import { Input, useModel, Form, FormProps, regexp } from 'react-binden';
+import { Input, useModel, Form, FormProps, regex } from 'react-binden';
 
 const url = 'http://your-site.com/signup';
 
@@ -190,7 +190,7 @@ function Signup() {
                 <Input
                     type="email"
                     model={email} // binds the value & handler
-                    pattern={[regexp.email, 'Type in a valid email']} // value pattern matching with custom error message
+                    pattern={[regex.email, 'Type in a valid email']} // value pattern matching with custom error message
                     placeholder="Email"
                     required // makes the field required | Form won't be submittable until this gets perfectly validated
                 />

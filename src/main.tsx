@@ -6,3 +6,4 @@ export * from './components/Textarea';
 export * from './hooks/useForm';
 export * from './hooks/useModel';
 export * from './hooks/useValidatorChain';
+export * from './utils/regex'
