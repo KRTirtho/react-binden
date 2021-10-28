@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   useMemo,
 } from 'react';
-import { Form, FormProps, useModel, Input } from "react-binden"
+import { Form, FormProps, useModel, Input, regex } from "react-binden"
 import ReactDOM from 'react-dom';
 
 interface CustomInputProps extends ComponentPropsWithoutRef<'input'> {
@@ -52,11 +52,10 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(function Cust
 });
 let counter = 0;
 
-const emailReg =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 function App() {
   const email = useModel('', {
-    pattern: [emailReg, 'Type in a valid email'],
+    pattern: [regex.email, 'Type in a valid email'],
     required: true,
   });
   const password = useModel('');
@@ -75,6 +74,7 @@ function App() {
     console.log('VALUES', values);
     console.log('HANDLERS', handlers);
     handlers.resetForm();
+    handlers.setSubmitting(false);
   };
 
   return (

@@ -14,6 +14,7 @@ Integrating an form-library with a third-party UI component library was never as
 -   Easy, simple & Complete control over React form, input, validation & submission
 -   Super lightweight (only 127KB)🪶, fast⚡ & uses ESNext module system (tree-shakable)🌲
 -   Offers validation out of the box. Doesn't even require one to install 3rd validation library
+-   Useful Regex Collection for validation out of the box
 -   Provides own hooks & components to build the form
 -   zero dependency👀
 -   Field imprinting (a way to follow another field's value completely like ducklings follows duck🦆)
