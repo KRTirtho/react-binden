@@ -52,7 +52,7 @@ export function Example() {
 ```
 
 :::info
-You can use [`useValidatorChain`](/docs/Hooks/useValidatorChain) hook to reduce down multiple `validate` functions to one single `validate` method that can be pass as prop
+You can use [`useValidatorChain`](/docs/hooks/use-validator-chain) hook to reduce down multiple `validate` functions to one single `validate` method that can be pass as prop
 :::
 
 You can use `pattern` to provide custom validation regular expressions for validating the input value. React Binden also provides some useful Regular Expressions out of the box named `regex`

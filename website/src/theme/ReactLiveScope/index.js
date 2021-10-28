@@ -15,7 +15,6 @@ import {
     useValidatorChain,
     Select,
     Textarea,
-    regex,
 } from 'react-binden';
 
 // Add react-live imports you need here
@@ -27,7 +26,7 @@ const ReactLiveScope = {
     Input,
     Textarea,
     Select,
-    regex,
+    regex: {},
     useModel,
     useForm,
     useValidatorChain,

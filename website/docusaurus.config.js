@@ -11,7 +11,7 @@ const config = {
         "Simple yet customizable React form handling & validation library inspired from Vue's bind-model",
     url: 'https://react-binden.netlify.app',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
+    onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
     organizationName: 'react-binden', // Usually your GitHub org/user name.
