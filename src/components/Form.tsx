@@ -11,6 +11,7 @@ import React, {
   FormEvent,
   useState,
   FocusEvent,
+  useCallback,
 } from 'react';
 import { useForm } from '../hooks/useForm';
 
@@ -61,7 +62,7 @@ export interface FormProps extends Omit<ComponentPropsWithoutRef<'form'>, 'onSub
     e: FormEvent<HTMLFormElement>,
     v: FormBagValues,
     c: FormBagMethods,
-  ) => void;
+  ) => Promise<void> | void;
   states?: FormShadowContext;
 }
 
@@ -86,23 +87,31 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(function Form(
     () => formRef.current,
   );
 
-  function resetForm() {
+  const resetForm = useCallback(() => {
     formRef.current?.reset();
     setReset(true);
-  }
+  }, [setErrors, formRef.current?.reset])
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!errors && !submitting && touched) {
-      setSubmitting(true);
-      onSubmit?.(e, { errors, reset }, { resetForm, setSubmitting, setErrors });
+    try {
+      if (!errors && !submitting && touched) {
+        setSubmitting(true);
+        // casting to promise incase using promise
+        return await Promise.resolve(onSubmit?.(e, { errors, reset }, { resetForm, setSubmitting, setErrors }));
+      }
+    } catch (error) {
+      console.log(`[react-binden]: Form submission error!\n${error}`)
     }
-  }
+  }, [
+    errors, submitting, reset, touched,
+    onSubmit, resetForm, setSubmitting, setErrors
+  ])
 
-  function handleBlur(e: FocusEvent<HTMLFormElement>) {
+  const handleBlur = useCallback((e: FocusEvent<HTMLFormElement>) => {
     onBlur?.(e);
     !touched && setTouched(true);
-  }
+  }, [touched, setTouched, onBlur])
 
   return (
     <FormProvider
