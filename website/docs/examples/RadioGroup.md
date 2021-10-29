@@ -1,5 +1,5 @@
 ---
 id: radio-group
-title: Redio Group
+title: Radio Group
 sidebar_position: 3
 ---
