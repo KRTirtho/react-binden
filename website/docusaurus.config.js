@@ -113,7 +113,7 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} React Binden, Inc`,
+                copyright: `Copyright © ${new Date().getFullYear()} React Binden`,
             },
             prism: {
                 theme: lightCodeTheme,
