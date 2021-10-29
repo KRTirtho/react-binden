@@ -10,18 +10,18 @@ import Head from "@docusaurus/Head";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 style={{ color: "white" }} className="hero__title title">{siteConfig.title}</h1>
+        <p style={{ color: "white" }} className="hero__subtitle title">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className="button button--primary button--lg"
             to="/docs/intro">
             Get Started
           </Link>
           <Link
-            className="button button--lg"
+            className="button button--secondary button--lg"
             to="/docs/installation">
             Installation
           </Link>

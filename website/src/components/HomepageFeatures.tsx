@@ -16,38 +16,35 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    title: 'Super Simple',
+    image: '/img/undraw_super-simple.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        React Binden offers the simplest, flexible and customizable experience for Form handling & validation
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    image: '/img/undraw_docusaurus_tree.svg',
+    title: 'Lightweight & Tree-shakable',
+    image: '/img/undraw_lightweight.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        It&apos;s one of the lightest form library for React. As it uses ESNext modules, React Binden is completely tree-shakable leading to a much smaller bundle size
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    image: '/img/undraw_docusaurus_react.svg',
+    title: 'Validation out of the box',
+    image: '/img/undraw_out-of-the-box.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Instead of relying on a third-party validation library, React Binden validates form by itself. Which reduces bundle size & makes validation a lot more flexible
       </>
     ),
   },
 ];
 
-function Feature({title, image, description}: FeatureItem) {
+function Feature({ title, image, description }: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
