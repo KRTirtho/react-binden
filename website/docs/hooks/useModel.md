@@ -49,7 +49,7 @@ State setters:
 -   setError
 -   setTouched
 
-### Using `useModel`
+### Usage
 
 ```jsx
 import { useModel } from 'react-binden';
