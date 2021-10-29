@@ -4,7 +4,7 @@ title: Validation
 sidebar_position: 1
 ---
 
-React Binden provides form validation out of the box & doesn't need any 3rd party validation library (you can use if you want). It uses all the semantic HTML validation attributes e.g.
+React Binden provides form validation out of the box & doesn't need any 3rd party validation library (you can use if you want). It uses all the [semantic HTML validation attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation) e.g.
 
 -   `min`, `max` (for numeric values)
 -   `minLength`, `maxLength` (for string values)

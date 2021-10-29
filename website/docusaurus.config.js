@@ -25,7 +25,8 @@ const config = {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
                     // Please change this to your repo.
-                    editUrl: 'https://github.com/KRTirtho/react-binden/tree/master/website',
+                    editUrl:
+                        'https://github.com/KRTirtho/react-binden/tree/master/website',
                     remarkPlugins: [
                         [require('docusaurus-remark-plugin-codetabs'), {}],
                         [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
@@ -56,7 +57,7 @@ const config = {
                 logo: {
                     alt: 'React Binden Logo',
                     src: 'img/logos/react-binden-logo-transparent.svg',
-                    srcDark: 'img/logos/react-binden-logo-transparent-light.svg'
+                    srcDark: 'img/logos/react-binden-logo-transparent-light.svg',
                 },
                 items: [
                     {
@@ -117,6 +118,21 @@ const config = {
             prism: {
                 theme: lightCodeTheme,
                 darkTheme: darkCodeTheme,
+            },
+            algolia: {
+                // If Algolia did not provide you any appId, use 'BH4D9OD16A'
+                appId: 'YOUR_APP_ID',
+
+                // Public API key: it is safe to commit it
+                apiKey: 'YOUR_SEARCH_API_KEY',
+
+                indexName: 'YOUR_INDEX_NAME',
+
+                // Optional: see doc section below
+                contextualSearch: true,
+
+                // Optional: Algolia search parameters
+                searchParameters: {},
             },
         }),
 };
