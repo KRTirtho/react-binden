@@ -12,13 +12,19 @@ It should be wrapped with a `Form` component as it need access to the `FormConte
 
 Basic usage of Input
 
-```jsx
-() => {
+```jsx live
+function Example() {
     const model = useModel('');
+    // Open the Browser Console to see the values
+    console.info('[/docs/components/input#usage] Output:', model);
     return (
-        <Form onSubmit={/*.....*/}>
+        <Form
+            onSubmit={() => {
+                /*.....*/
+            }}
+        >
             <Input
-                mode={model}
+                model={model}
                 placeholder="Type here..."
                 minLength={5}
                 maxLength={[12, 'No 13']}
@@ -27,7 +33,7 @@ Basic usage of Input
             <button type="submit">Submit</button>
         </Form>
     );
-};
+}
 ```
 
 ### Validation props

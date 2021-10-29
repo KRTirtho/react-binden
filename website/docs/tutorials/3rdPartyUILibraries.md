@@ -23,8 +23,8 @@ function Login() {
                 {...props}
                 style={{
                     ...props.style,
-                    border: 'green 1px solid',
-                    background: '#242424',
+                    border: 'orange 1px solid',
+                    background: 'skyblue',
                 }}
             />
         );
@@ -32,7 +32,22 @@ function Login() {
 
     const model = useModel('');
 
-    return <Input model={model} as={CustomInput} placeholder="Awesome Input" />;
+    // Open the Browser Console to see the Output
+    console.log(
+        '[/docs/tutorials/3rd-party-ui-libraries#as-custom-component] Output:',
+        model,
+    );
+
+    return (
+        <Form
+            onSubmit={() => {
+                /*...*/
+            }}
+        >
+            <Input model={model} as={CustomInput} placeholder="Awesome Input" />
+            <button type="submit">Submit</button>
+        </Form>
+    );
 }
 ```
 
