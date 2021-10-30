@@ -10,7 +10,7 @@
         "email": "krtirtho@gmail.com",
         "url": "https://github.com/KRTirtho/react-binden/issues"
     },
-    "description": "Vue's bind-model inspired simple yet highly customizable form handling & validating library for React",
+    "description": "Vue's v-bind inspired simple yet highly customizable form handling & validating library for React",
     "homepage": "https://github.com/KRTirtho/react-binden",
     "keywords": [
         "react",

@@ -1,14 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const theme = require('prism-react-renderer/themes/synthwave84');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'React Binden',
     tagline:
-        "Simple yet customizable React form handling & validation library inspired from Vue's bind-model",
+        "Simple yet customizable React form handling & validation library inspired from Vue's v-bind",
     url: 'https://react-binden.netlify.app',
     baseUrl: '/',
     onBrokenLinks: 'warn',
@@ -116,8 +115,7 @@ const config = {
                 copyright: `Copyright © ${new Date().getFullYear()} React Binden`,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme
             },
             algolia: {
                 // If Algolia did not provide you any appId, use 'BH4D9OD16A'

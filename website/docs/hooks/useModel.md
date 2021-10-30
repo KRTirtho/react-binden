@@ -4,7 +4,7 @@ title: useModel
 sidebar_position: 1
 ---
 
-React Binden is inspired from Vue's `v-bind` but how it works is a lot different though it looks kind of same. `useModel` hook is used for connecting the state with a React Binden Field.
+React Binden is inspired from Vue's **v-bind** but how it works is a lot different. `useModel` hook is used for connecting the state with a React Binden Field.
 
 `useModel` is just a simple hook that provides necessary state for `Field`, `Input`, `Textarea` & `Select`
 
