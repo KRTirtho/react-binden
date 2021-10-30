@@ -45,8 +45,10 @@ export default function Home(): JSX.Element {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Layout
-        title={`Hello from ${siteConfig.title}`}
-        description="Description will go into a meta tag in <head />">
+        title={`Forms? Nah, they aren't hard anymore!😊`}
+        description={siteConfig.tagline}
+        image="/static/img/logos/react-binden-logo-circular.png"
+      >
         <HomepageHeader />
         <main>
           <HomepageFeatures />
