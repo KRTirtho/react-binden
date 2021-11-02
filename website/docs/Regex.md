@@ -31,6 +31,9 @@ import { regex } from 'react-binden';
 -   complexPassword
 -   url
 -   passport
+-   lowercaseOnly
+-   uppercaseOnly
+-   creditCard
 
 ### Date
 
