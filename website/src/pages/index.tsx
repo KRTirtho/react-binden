@@ -47,7 +47,7 @@ export default function Home(): JSX.Element {
       <Layout
         title={`Forms? Nah, they aren't hard anymore!😊`}
         description={siteConfig.tagline}
-        image="/static/img/logos/react-binden-logo-circular.png"
+        image="img/logos/react-binden-logo-circular.png"
       >
         <HomepageHeader />
         <main>
