@@ -313,50 +313,68 @@ export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, FieldPro
       | Pick<ComponentProps<'input'>, SemanticValidationProps>
       | Record<string, unknown>
     >(
-      () =>
-        semanticValidation
-          ? {
-            required: !!required,
-            min: Array.isArray(min) ? min[0].toString() : min?.toString(),
-            max: Array.isArray(max) ? max[0].toString() : max?.toString(),
-            minLength: Array.isArray(minLength)
-              ? minLength[0].toString()
-              : minLength?.toString(),
-            maxLength: Array.isArray(maxLength)
-              ? maxLength[0].toString()
-              : maxLength?.toString(),
-            pattern:
-              Array.isArray(pattern) && !Array.isArray(pattern[0])
-                ? pattern[0].source
-                : pattern instanceof RegExp
-                  ? pattern?.source
-                  : undefined,
-          }
-          : {},
+      () => {
+        let patternSrc = Array.isArray(pattern) && !Array.isArray(pattern[0])
+          ? pattern[0].source
+          : pattern instanceof RegExp
+            ? pattern?.source
+            : undefined;
+
+        // clearing up ^$ as html input pattern doesn't work with
+        // regex starting with ^ & ending with $
+        if (patternSrc && patternSrc.startsWith("^")) patternSrc = patternSrc.slice(1)
+
+        if (patternSrc && patternSrc.endsWith("$")) patternSrc = patternSrc.slice(0, -1)
+
+        const propsObj = {
+          required: !!required,
+          min: Array.isArray(min) ? min[0].toString() : min?.toString(),
+          max: Array.isArray(max) ? max[0].toString() : max?.toString(),
+          minLength: Array.isArray(minLength)
+            ? minLength[0].toString()
+            : minLength?.toString(),
+          maxLength: Array.isArray(maxLength)
+            ? maxLength[0].toString()
+            : maxLength?.toString(),
+          pattern:
+            Array.isArray(pattern) && !Array.isArray(pattern[0])
+              ? pattern[0].source
+              : pattern instanceof RegExp
+                ? pattern?.source
+                : undefined,
+        }
+
+        if (semanticValidation) return propsObj;
+        return {}
+
+      },
       [required, min, max, minLength, maxLength, pattern],
     );
 
     const mapped = useMemo(
-      () => ({
-        error,
-        disabled: isDisabled,
-        ...semanticValidationProps,
-        ...(as && mapProps
-          ? mapProps({
-            required,
-            max,
-            min,
-            maxLength,
-            minLength,
-            onChange,
-            onBlur,
-            pattern,
-            type,
-            validate,
-            ...props,
-          })
-          : props),
-      }),
+      () => {
+        const processedProps = {
+          error,
+          disabled: isDisabled,
+          ...(as && mapProps
+            ? mapProps({
+              required,
+              max,
+              min,
+              maxLength,
+              minLength,
+              onChange,
+              onBlur,
+              pattern,
+              type,
+              validate,
+              ...props,
+            })
+            : { ...props, ...semanticValidationProps }),
+        }
+        delete (processedProps as any)["semantic-validation"];
+        return processedProps
+      },
       [error, props, as, required, max, min, maxLength, minLength, pattern, type],
     );
 

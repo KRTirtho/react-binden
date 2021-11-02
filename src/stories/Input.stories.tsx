@@ -2,8 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Input, InputProps } from '../components/Input';
 import { useModel } from '../hooks/useModel';
-import { Form } from '../main';
-import { useValidatorChain } from '../hooks/useValidatorChain';
+import { Form, regex } from '../main';
 
 export default {
   title: 'Components/Input',
@@ -41,4 +40,6 @@ export const WithDefault = Template.bind({});
   type: 'text',
   maxLength: 50,
   minLength: 10,
+  "semantic-validation": false,
+  pattern: [regex.email, "need an email"]
 } as InputProps;
