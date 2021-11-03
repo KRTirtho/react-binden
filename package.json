@@ -33,7 +33,8 @@
         "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
         "test": "vite-jest",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook"
+        "build-storybook": "build-storybook",
+        "prepublishOnly": "rm dist/tsconfig.tsbuildinfo"
     },
     "peerDependencies": {
         "prop-types": "^15.7.2",
