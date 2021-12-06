@@ -26,5 +26,7 @@
   "include": [
     "./src"
   ],
-  "exclude": []
+  "exclude": [
+    "./src/stories"
+  ]
 }
